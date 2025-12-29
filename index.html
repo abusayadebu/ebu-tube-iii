@@ -1,18 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- daisUi and tailwind cdn -->
+     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
     <title>Ebu Tube III</title>
 </head>
-<body>
+<body class="w-11/12 mx-auto">
     <!-- header section starts here -->
     <header>
-
+        <nav class="flex justify-between items-center py-5 border-b border-b-red-400">
+            <div class="logo w-[100px]">
+                <img src="/assets/Logo.png" alt="">
+            </div>
+            <div class="search">
+                <input type="text" placeholder="Search here..." class="input input-lg" />
+            </label>    
+            </div>
+            <div class="Sort">
+                <button class="btn">Sort</button>
+            </div>
+        </nav>
     </header>
 
     <!-- main section starts here -->
-     <main>
+     <main class="">
         <h1>Hello Ebu Tube. Let's Code...</h1>
      </main>
 
@@ -20,5 +35,8 @@
       <footer>
 
       </footer>
+
+      <!-- script sources here -->
+       <script src="/js/video.js"></script>
 </body>
 </html>
