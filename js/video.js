@@ -37,36 +37,23 @@ const displayCategories = (catgeories) => {
     })
 }
 
-// create displayVideos --
-
-//  "videos": [
-    // {
-    //   "category_id": "1001",
-    //   "video_id": "aaaa",
-    //   "thumbnail": "https://i.ibb.co/L1b6xSq/shape.jpg",
-    //   "title": "Shape of You",
-    //   "authors": [
-    //     {
-    //       "profile_picture": "https://i.ibb.co/D9wWRM6/olivia.jpg",
-    //       "profile_name": "Olivia Mitchell",
-    //       "verified": ""
-    //     }
-    //   ],
-    //   "others": {
-    //     "views": "100K",
-    //     "posted_date": "16278"
-    //   },
-
+// display videos
 const displayVideos = (videos) => {
     videos.forEach((video)=> {
         const videoContainer = document.getElementById("videos-container")
         const card = document.createElement("div")
         card.classList = "card bg-base-100 shadow-sm"
         card.innerHTML = 
-        `<figure class="h-[200px]">
+
+        `<figure class="h-[200px] relative">
     <img class="h-full w-full object-cover"
       src= ${video.thumbnail}
       alt="" />
+      
+      ${video.others.posted_date?.length == 0 
+        ? "" : `<span class="absolute right-2 bottom-2 bg-black text-white p-2 rounded">${video.others.posted_date}</span>`
+      }
+        
   </figure>
 
   <div class="px-0 py-2 flex gap-2">
@@ -80,9 +67,6 @@ const displayVideos = (videos) => {
     </div>
     <p>${video.others.views} views</p>
     </div>
-
-    
-    
   </div>
         `
         videoContainer.append(card);
