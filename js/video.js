@@ -12,8 +12,19 @@ const loadCategories = () => {
 }
 
 // create displayCategories
-const displayCategories = (data) => {
-    console.log(data);
+const displayCategories = (catgeories) => {
+    catgeories.forEach( (item)=>{
+        console.log(item);
+
+        // create btn
+        const button = document.createElement("button");
+        button.classList = "btn text-lg hover:bg-red-400";
+        button.innerText = item.category; 
+
+        // show the buttons 
+        const categoryContainer = document.getElementById("category-container");
+        categoryContainer.append(button);
+    })
 }
 
 loadCategories();
