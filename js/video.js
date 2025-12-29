@@ -75,7 +75,8 @@ const displayVideos = (videos) => {
     <h2 class="text-xl font-bold">${video.title}</h2>
     <div class="flex gap-2">
     <p class="text-lg">${video.authors[0].profile_name}</p>
-    <img class="w-7 object-cover" src="https://img.icons8.com/?size=100&id=123575&format=png">
+    ${video.authors[0].verified == true 
+        ? `<img class="w-7 object-cover" src="https://img.icons8.com/?size=100&id=123575&format=png"></img>` : ""}
     </div>
     <p>${video.others.views} views</p>
     </div>
