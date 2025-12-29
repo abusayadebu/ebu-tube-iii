@@ -51,7 +51,7 @@ const displayVideos = (videos) => {
       alt="" />
       
       ${video.others.posted_date?.length == 0 
-        ? "" : `<span class="absolute right-2 bottom-2 bg-black text-white p-2 rounded">${video.others.posted_date}</span>`
+        ? "" : `<span class="absolute right-2 bottom-2 bg-black text-white p-2 rounded">${getTimeString(video.others.posted_date)}</span>`
       }
         
   </figure>
