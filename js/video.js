@@ -11,7 +11,7 @@ const loadCategories = () => {
     
 }
 
-
+// loadAllVideos
 const loadVideos = () => {
     fetch("https://openapi.programming-hero.com/api/phero-tube/videos")
     .then((res) => res.json())
@@ -19,6 +19,14 @@ const loadVideos = () => {
     .then((error) => console.log(error))
 }
 
+// loadCategoryVideos 
+const loadCategoryVideos = (id) => {
+    fetch(`https://openapi.programming-hero.com/api/phero-tube/category/${id}`)
+    .then((res) => res.json())
+    .then((data) => displayVideos(data.category))
+    .then((error) => console.log(error))
+    
+}
 
 
 // create displayCategories
@@ -27,20 +35,39 @@ const displayCategories = (catgeories) => {
         console.log(item);
 
         // create btn
-        const button = document.createElement("button");
-        button.classList = "btn text-lg hover:bg-red-400";
-        button.innerText = item.category; 
+        const buttonContainer = document.createElement("div");
+        buttonContainer.innerHTML = 
+        ` <button onclick="loadCategoryVideos(${item.category_id})" class="btn">
+            ${item.category}
+            </button>
+        `;
+       
 
         // show the buttons 
         const categoryContainer = document.getElementById("category-container");
-        categoryContainer.append(button);
+        categoryContainer.append(buttonContainer);
     })
 }
 
 // display videos
 const displayVideos = (videos) => {
+    const videoContainer = document.getElementById("videos-container")
+    videoContainer.innerHTML = "";
+
+    if(videos.length == 0){
+        videoContainer.classList.remove("grid");
+        videoContainer.innerHTML = 
+        `<div class="min-h-[300px] flex flex-col justify-center items-center gap-5">
+        <img src="assets/Icon.png" />
+        <h2 class="text-xl text-center font-bold">No Content Here in this category</h2>
+            </div>
+        `
+    }
+    else{
+        videoContainer.classList.add("grid");
+    }
+
     videos.forEach((video)=> {
-        const videoContainer = document.getElementById("videos-container")
         const card = document.createElement("div")
         card.classList = "card bg-base-100 shadow-sm"
         card.innerHTML = 
@@ -51,7 +78,7 @@ const displayVideos = (videos) => {
       alt="" />
       
       ${video.others.posted_date?.length == 0 
-        ? "" : `<span class="absolute right-2 bottom-2 bg-black text-white p-2 rounded">${getTimeString(video.others.posted_date)}</span>`
+        ? "" : `<span class="absolute right-2 bottom-2 bg-black text-white p-2 rounded text-xs">${getTimeString(video.others.posted_date)}</span>`
       }
         
   </figure>
